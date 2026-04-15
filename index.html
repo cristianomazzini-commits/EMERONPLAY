@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EmeronPlay</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --red:#E50914;--red2:#ff1e2d;--navy:#1b3a6b;
+  --black:#000;--bg1:#141414;--bg2:#1f1f1f;--bg3:#2a2a2a;
+  --w:#fff;--g1:#e5e5e5;--g2:#b3b3b3;--g3:#808080;--g4:#404040;
+}
+body{background:var(--black);color:var(--w);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:68px;background:linear-gradient(to bottom,rgba(0,0,0,.96) 0%,transparent 100%);transition:background .3s}
+nav.sol{background:rgba(20,20,20,.97)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:3px;color:var(--red);filter:drop-shadow(0 0 10px rgba(229,9,20,.45));cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo svg{opacity:.8}
+.nl{display:flex;gap:22px}
+.nl a{text-decoration:none;font-size:14px;font-weight:500;color:var(--g2);transition:color .2s}
+.nl a:hover,.nl a.on{color:var(--w)}
+.nr{display:flex;align-items:center;gap:12px}
+.sb{display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.15);border-radius:4px;padding:7px 11px;transition:all .2s}
+.sb:focus-within{border-color:rgba(255,255,255,.4)}
+.sb input{background:none;border:none;outline:none;color:var(--w);font-size:13px;font-family:'Inter',sans-serif;width:145px}
+.sb input::placeholder{color:var(--g3)}
+.bin{background:var(--red);color:var(--w);border:none;cursor:pointer;padding:8px 20px;border-radius:4px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;transition:all .2s}
+.bin:hover{background:var(--red2);transform:scale(1.03)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden}
+.hm{position:absolute;inset:0;z-index:0}
+.hm video{width:100%;height:100%;object-fit:cover;filter:brightness(.48)}
+.hfb{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 30%,rgba(27,58,107,.2) 0%,transparent 60%),#000;display:flex;align-items:center;justify-content:center}
+.hfbt{font-family:'Bebas Neue',sans-serif;font-size:180px;letter-spacing:10px;color:rgba(229,9,20,.04);text-align:center;line-height:1;user-select:none}
+.hs{position:absolute;inset:0;z-index:1;background:linear-gradient(to right,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.05) 100%),linear-gradient(to top,rgba(0,0,0,1) 0%,rgba(0,0,0,.5) 28%,transparent 68%)}
+.hb{position:relative;z-index:2;padding:0 56px 76px;max-width:600px}
+.hbadge{display:inline-flex;align-items:center;gap:7px;margin-bottom:14px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--red)}
+.hdot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.ht{font-family:'Bebas Neue',sans-serif;font-size:78px;line-height:.9;letter-spacing:2px;margin-bottom:6px;text-shadow:2px 4px 20px rgba(0,0,0,.7)}
+.ht .r{color:var(--red)}
+.hsub{font-size:13px;font-weight:600;color:var(--g2);letter-spacing:.8px;text-transform:uppercase;margin-bottom:14px}
+.hdesc{font-size:15px;color:rgba(255,255,255,.72);line-height:1.65;max-width:450px;margin-bottom:26px}
+.hbtns{display:flex;gap:10px}
+.hbtn{display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:4px;font-family:'Inter',sans-serif;font-size:15px;font-weight:800;border:none;cursor:pointer;transition:all .2s}
+.hbtn.pl{background:#fff;color:#000}
+.hbtn.pl:hover{background:rgba(255,255,255,.82)}
+.hbtn.inf{background:rgba(109,109,110,.72);color:#fff;backdrop-filter:blur(4px)}
+.hbtn.inf:hover{background:rgba(109,109,110,.92)}
+.hrat{position:absolute;right:56px;bottom:76px;z-index:2;border:2px solid rgba(255,255,255,.45);padding:3px 10px;font-size:15px;font-weight:700;color:rgba(255,255,255,.65)}
+
+/* PILLS */
+.pbar{padding:14px 56px;display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin-bottom:8px}
+.pbar::-webkit-scrollbar{display:none}
+.pill{flex-shrink:0;padding:7px 17px;border-radius:4px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);font-size:13px;font-weight:600;color:rgba(255,255,255,.72);cursor:pointer;transition:all .2s;white-space:nowrap}
+.pill:hover{background:rgba(255,255,255,.13);color:#fff}
+.pill.on{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 0 14px rgba(229,9,20,.3)}
+
+/* SECTIONS */
+.sec{padding:0 0 2px}
+.rh{display:flex;align-items:center;justify-content:space-between;padding:0 56px;margin-bottom:10px}
+.rt{font-size:19px;font-weight:800;color:var(--g1);letter-spacing:-.2px}
+.rtr{color:var(--red);margin-right:8px}
+.rm{font-size:13px;font-weight:600;color:var(--red);text-decoration:none;opacity:0;transition:opacity .2s}
+.rh:hover .rm{opacity:1}
+
+/* TRACK */
+.track{display:flex;gap:5px;padding:6px 56px 22px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.track-nf{display:flex;gap:5px;padding:6px 56px 22px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:flex-end}
+.track-nf::-webkit-scrollbar{display:none}
+
+/* CARD */
+.card{flex-shrink:0;width:182px;cursor:pointer;position:relative;transition:transform .3s cubic-bezier(.25,.46,.45,.94),z-index 0s .3s;transform-origin:center center}
+.card:hover{transform:scale(1.32) translateY(-14px);z-index:50;transition:transform .3s cubic-bezier(.25,.46,.45,.94),z-index 0s 0s}
+.cf{border-radius:4px;overflow:hidden;background:var(--bg2);box-shadow:0 4px 20px rgba(0,0,0,.6);transition:box-shadow .3s}
+.card:hover .cf{border-radius:4px 4px 0 0;box-shadow:0 16px 50px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.07)}
+.ci{width:100%;height:103px;overflow:hidden;position:relative}
+.ci img{width:100%;height:100%;object-fit:cover;transition:transform .4s,filter .3s;filter:brightness(.85)}
+.card:hover .ci img{transform:scale(1.07);filter:brightness(1)}
+.cov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.card:hover .cov{opacity:1}
+.cpl{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;font-size:14px;color:#000;font-weight:900;box-shadow:0 4px 16px rgba(0,0,0,.5);transition:transform .2s}
+.card:hover .cpl{transform:scale(1.08)}
+.cprog{height:3px;background:var(--g4)}
+.cprogf{height:100%;background:var(--red)}
+.cbdg{position:absolute;top:7px;left:7px;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:2px}
+.cbdg.r{background:var(--red);color:#fff}
+.cbdg.n{background:#1b3a6b;color:#9bbfff;border:1px solid rgba(155,191,255,.3)}
+.cbdg.g{background:#1a5c38;color:#8effc6;border:1px solid rgba(142,255,198,.3)}
+.cbdg.p{background:#3d1c80;color:#d4b8ff;border:1px solid rgba(212,184,255,.3)}
+.cdur{position:absolute;bottom:5px;right:6px;font-size:10px;font-weight:700;color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.cp{background:var(--bg1);border-radius:0 0 4px 4px;padding:10px 12px 12px;display:none;border-top:2px solid var(--red)}
+.card:hover .cp{display:block}
+.cpa{display:flex;gap:7px;align-items:center;margin-bottom:8px}
+.pa{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;border:none;transition:all .15s}
+.pa.pp{background:#fff;color:#000;font-weight:900;font-size:11px}
+.pa.oo{background:none;color:rgba(255,255,255,.6);border:2px solid rgba(255,255,255,.35)}
+.pa.oo:hover{border-color:#fff;color:#fff}
+.cpt{font-size:11px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:5px}
+.cpm{display:flex;gap:7px;align-items:center}
+.mp{color:#46d369;font-size:11px;font-weight:700}
+.yr{font-size:11px;color:var(--g3)}
+.lv{font-size:9px;border:1px solid rgba(255,255,255,.3);padding:1px 5px;border-radius:2px;color:var(--g2)}
+
+/* LARGE CARD */
+.clg{flex-shrink:0;width:370px;cursor:pointer;border-radius:6px;overflow:hidden;border:2px solid rgba(255,255,255,.15);transition:all .3s}
+.clg:hover{border-color:var(--w);transform:scale(1.01)}
+.clgi{width:100%;height:210px;position:relative;overflow:hidden}
+.clgi img{width:100%;height:100%;object-fit:cover;filter:brightness(.78);transition:filter .3s}
+.clg:hover .clgi img{filter:brightness(.95)}
+.clgs{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 55%)}
+.clgb{padding:13px 15px;background:var(--bg1)}
+.clgtg{font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.clgtt{font-size:15px;font-weight:800;color:#fff;margin-bottom:5px;line-height:1.25}
+.clgep{font-size:12px;color:var(--g2);margin-bottom:9px}
+.clgpg{height:3px;background:var(--g4);margin-bottom:9px}
+.clgpf{height:100%;background:var(--red)}
+.clgbtns{display:flex;gap:7px}
+.lbtn{display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:3px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;border:none;cursor:pointer;transition:all .2s}
+.lbtn.w{background:#fff;color:#000}
+.lbtn.w:hover{background:rgba(255,255,255,.82)}
+.lbtn.g{background:rgba(109,109,110,.65);color:#fff}
+.lbtn.g:hover{background:rgba(109,109,110,.9)}
+
+/* WIDE BANNER */
+.wb{margin:18px 56px 28px;border-radius:7px;overflow:hidden;position:relative;height:195px;cursor:pointer;transition:transform .3s}
+.wb:hover{transform:scale(1.005)}
+.wb img{width:100%;height:100%;object-fit:cover;filter:brightness(.62);transition:filter .3s}
+.wb:hover img{filter:brightness(.78)}
+.wbs{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.92) 0%,rgba(0,0,0,.28) 60%,transparent 100%);display:flex;align-items:center;padding:0 34px}
+.wbc{max-width:470px}
+.wbtg{display:inline-block;background:var(--red);color:#fff;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-bottom:9px}
+.wbtt{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;line-height:1;margin-bottom:7px}
+.wbdesc{font-size:12px;color:rgba(255,255,255,.68);line-height:1.5;margin-bottom:13px}
+.wbbtns{display:flex;gap:8px}
+.wbtn{padding:8px 17px;border-radius:3px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s}
+.wbtn.w{background:#fff;color:#000}
+.wbtn.w:hover{background:rgba(255,255,255,.82)}
+.wbtn.g{background:rgba(109,109,110,.7);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.wbtn.g:hover{background:rgba(109,109,110,.9)}
+
+/* GENRE GRID */
+.gs{padding:8px 56px 50px}
+.gst{font-size:19px;font-weight:800;color:var(--g1);margin-bottom:13px;display:flex;align-items:center;gap:10px}
+.gst::before{content:'';display:inline-block;width:3px;height:18px;background:var(--red);border-radius:2px}
+.gg{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:7px}
+.gi{height:66px;border-radius:5px;display:flex;align-items:center;padding:0 17px;cursor:pointer;position:relative;overflow:hidden;transition:all .2s;border:1px solid rgba(255,255,255,.06)}
+.gi:hover{border-color:rgba(255,255,255,.2);transform:scale(1.02)}
+.giic{font-size:25px;margin-right:12px;flex-shrink:0}
+.gin{font-size:13px;font-weight:700;color:#fff}
+.gic{font-size:11px;color:rgba(255,255,255,.38)}
+.gibg{position:absolute;right:-8px;bottom:-10px;font-size:62px;opacity:.055;pointer-events:none}
+
+/* FOOTER */
+footer{background:#000;border-top:1px solid rgba(255,255,255,.06);padding:44px 56px 34px}
+.ftp{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap;gap:18px}
+.flb{display:flex;flex-direction:column;gap:9px}
+.flep{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--red);opacity:.72}
+.flem{display:flex;align-items:center;gap:7px;opacity:.38}
+.flem span{font-size:12px;font-weight:800;letter-spacing:2px;color:#fff}
+.fll{display:flex;gap:16px;flex-wrap:wrap;list-style:none;align-items:center}
+.fll a{font-size:12px;color:var(--g3);text-decoration:none;transition:color .2s}
+.fll a:hover{color:var(--g2)}
+.fcp{font-size:12px;color:var(--g4);line-height:1.7}
+
+/* LOGIN MODAL */
+.ov{display:none;position:fixed;inset:0;z-index:8000;background:rgba(0,0,0,.87);backdrop-filter:blur(20px);align-items:center;justify-content:center}
+.ov.open{display:flex}
+.mo{background:#181818;border-radius:6px;padding:48px 52px;width:430px;max-width:92vw;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.95)}
+.mol{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:var(--red);filter:drop-shadow(0 0 10px rgba(229,9,20,.35));margin-bottom:26px}
+.mo h2{font-size:26px;font-weight:800;margin-bottom:6px}
+.mo p{font-size:13px;color:var(--g2);margin-bottom:26px;line-height:1.5}
+.xb{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:none;color:var(--g2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.xb:hover{background:rgba(255,255,255,.15);color:#fff}
+.fi{margin-bottom:13px}
+.fi label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--g3);margin-bottom:7px}
+.fi input{width:100%;background:#333;border:none;border-radius:4px;padding:13px 15px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;transition:all .2s}
+.fi input:focus{background:#444;box-shadow:0 0 0 2px var(--red)}
+.dvo{display:flex;align-items:center;gap:11px;margin:16px 0;font-size:12px;color:var(--g3)}
+.dvo::before,.dvo::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1)}
+.bgov{width:100%;background:#1351b4;color:#fff;border:none;cursor:pointer;padding:13px;border-radius:4px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px;transition:all .2s;margin-bottom:11px}
+.bgov:hover{background:#1761cc;transform:translateY(-1px)}
+.bmai{width:100%;background:var(--red);color:#fff;border:none;cursor:pointer;padding:13px;border-radius:4px;font-family:'Inter',sans-serif;font-size:15px;font-weight:800;margin-top:5px;transition:all .2s;box-shadow:0 0 20px rgba(229,9,20,.28)}
+.bmai:hover{background:var(--red2);box-shadow:0 0 35px rgba(229,9,20,.5)}
+.mn{text-align:center;margin-top:16px;font-size:12px;color:var(--g3);line-height:1.7}
+.mn a{color:rgba(255,255,255,.5)}
+.mn a:hover{color:#fff}
+
+/* VIDEO PLAYER MODAL */
+.pov{display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.92);backdrop-filter:blur(24px);align-items:center;justify-content:center}
+.pov.open{display:flex}
+.pbox{background:#000;border-radius:9px;overflow:hidden;width:min(880px,95vw);position:relative;box-shadow:0 30px 80px rgba(0,0,0,.9)}
+.pclose{position:absolute;top:14px;right:14px;z-index:10;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.pclose:hover{background:var(--red);border-color:var(--red)}
+.piframe{position:relative;padding-bottom:56.25%;height:0}
+.piframe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hb{animation:fadeUp .8s ease .2s both}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#">
+    <svg width="26" height="22" viewBox="0 0 28 24" fill="none">
+      <path d="M14 4C11 2 6 2 2 4v16c4-2 8-2 12 0V4z" fill="#fff" opacity=".3"/>
+      <path d="M14 4c3-2 8-2 12 0v16c-4-2-8-2-12 0V4z" fill="#fff" opacity=".5"/>
+      <path d="M14 4v16" stroke="#fff" stroke-width="1.2" opacity=".6"/>
+    </svg>
+    EMERONPLAY
+  </a>
+  <div class="nl">
+    <a href="#" class="on">Início</a>
+    <a href="#">Catálogo</a>
+    <a href="#">Séries</a>
+    <a href="#">Podcasts</a>
+    <a href="#">Ao Vivo</a>
+    <a href="#">Minha Lista</a>
+  </div>
+  <div class="nr">
+    <div class="sb">
+      <svg width="13" height="13" fill="none" stroke="#808080" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Títulos, séries, podcasts...">
+    </div>
+    <button class="bin" onclick="openL()">Entrar</button>
+  </div>
+</nav>
+
+<!-- HERO com vinheta MP4 -->
+<section class="hero">
+  <div class="hm">
+    <video autoplay muted loop playsinline id="hv">
+      <source src="/mnt/user-data/uploads/7b6338fe-4b81-456b-a41e-f9282e8c3d3a.mp4" type="video/mp4">
+    </video>
+    <div class="hfb"><div class="hfbt">EMERON<br>PLAY</div></div>
+  </div>
+  <div class="hs"></div>
+  <div class="hb">
+    <div class="hbadge"><div class="hdot"></div>Em destaque agora</div>
+    <h1 class="ht">Rumo à<br><span class="r">Toga</span></h1>
+    <div class="hsub">ENAM 2026.1 — 5ª Edição · Programa Preparatório EMERON</div>
+    <p class="hdesc">Três sessões híbridas com transmissão ao vivo, material exclusivo, simulados e certificação digital com QR code. Vagas presenciais com reserva por ação afirmativa.</p>
+    <div class="hbtns">
+      <button class="hbtn pl" onclick="openP('ZMYRyxeBJ9Q')">▶&nbsp; Reproduzir</button>
+      <button class="hbtn inf">ⓘ&nbsp; Mais Informações</button>
+    </div>
+  </div>
+  <div class="hrat">LIVRE</div>
+</section>
+
+<!-- PILLS -->
+<div class="pbar">
+  <div class="pill on">Tudo</div>
+  <div class="pill">Séries</div>
+  <div class="pill">Podcasts</div>
+  <div class="pill">TED Talks</div>
+  <div class="pill">Microlearning</div>
+  <div class="pill">Cursos</div>
+  <div class="pill">Ao Vivo</div>
+  <div class="pill">Formação Inicial</div>
+  <div class="pill">Direitos Humanos</div>
+  <div class="pill">Tecnologia</div>
+</div>
+
+<!-- ══ CONTINUAR ASSISTINDO (layout grande + pequenos) ══ -->
+<div class="sec" style="margin-top:10px">
+  <div class="rh">
+    <div class="rt">Continuar assistindo</div>
+    <a href="#" class="rm">Ver todos →</a>
+  </div>
+  <div class="track-nf">
+
+    <!-- Card grande — vídeo 1 -->
+    <div class="clg" onclick="openP('ZdMTS3l0ZEc')">
+      <div class="clgi">
+        <img src="https://img.youtube.com/vi/ZdMTS3l0ZEc/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/ZdMTS3l0ZEc/hqdefault.jpg'" alt="">
+        <div class="clgs"></div>
+      </div>
+      <div class="clgb">
+        <div class="clgtg">🎤 Banzeiro Lero / Pedido de Vista / Série</div>
+        <div class="clgtt">Vídeo 1 — Canal EMERON</div>
+        <div class="clgep">youtube.com/EscolaEmeron</div>
+        <div class="clgpg"><div class="clgpf" style="width:65%"></div></div>
+        <div class="clgbtns">
+          <button class="lbtn w" onclick="event.stopPropagation();openP('ZdMTS3l0ZEc')">▶ Continuar</button>
+          <button class="lbtn g">+ Minha Lista</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vídeo 2 -->
+    <div class="card" onclick="openP('Syd2SpLPnik')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/Syd2SpLPnik/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/Syd2SpLPnik/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg r">EMERON</span>
+        </div>
+        <div class="cprog"><div class="cprogf" style="width:32%"></div></div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 2 — Canal EMERON</div>
+          <div class="cpm"><span class="mp">32% visto</span><span class="yr">2026</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vídeo 3 -->
+    <div class="card" onclick="openP('uAwnIRwDXSo')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/uAwnIRwDXSo/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/uAwnIRwDXSo/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg p">EMERON</span>
+        </div>
+        <div class="cprog"><div class="cprogf" style="width:18%"></div></div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 3 — Canal EMERON</div>
+          <div class="cpm"><span class="mp">18% visto</span><span class="yr">2026</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vídeo 4 -->
+    <div class="card" onclick="openP('2KmzzZLFg-M')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/2KmzzZLFg-M/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/2KmzzZLFg-M/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg n">EMERON</span>
+        </div>
+        <div class="cprog"><div class="cprogf" style="width:85%"></div></div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 4 — Canal EMERON</div>
+          <div class="cpm"><span class="mp">85% visto</span><span class="yr">2026</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vídeo 5 -->
+    <div class="card" onclick="openP('WcoRbheNSs0')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/WcoRbheNSs0/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/WcoRbheNSs0/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg g">EMERON</span>
+        </div>
+        <div class="cprog"><div class="cprogf" style="width:50%"></div></div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 5 — Canal EMERON</div>
+          <div class="cpm"><span class="mp">50% visto</span><span class="yr">2026</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ CANAL EMERON — todos os 8 vídeos ══ -->
+<div class="sec">
+  <div class="rh">
+    <div class="rt"><span class="rtr">▶</span>Canal EMERON — Todos os Vídeos</div>
+    <a href="https://youtube.com/EscolaEmeron" target="_blank" class="rm">Ver no YouTube →</a>
+  </div>
+  <div class="track">
+
+    <div class="card" onclick="openP('ZdMTS3l0ZEc')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/ZdMTS3l0ZEc/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/ZdMTS3l0ZEc/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg r">EMERON</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 1 · Banzeiro Lero / Pedido de Vista / Série</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="yr">2026</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openP('Syd2SpLPnik')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/Syd2SpLPnik/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/Syd2SpLPnik/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg r">EMERON</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 2 · Canal EscolaEmeron</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="yr">2026</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openP('uAwnIRwDXSo')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/uAwnIRwDXSo/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/uAwnIRwDXSo/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg n">EMERON</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 3 · Canal EscolaEmeron</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="yr">2026</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openP('2KmzzZLFg-M')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/2KmzzZLFg-M/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/2KmzzZLFg-M/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg n">EMERON</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 4 · Canal EscolaEmeron</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="yr">2026</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openP('WcoRbheNSs0')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/WcoRbheNSs0/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/WcoRbheNSs0/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg g">EMERON</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 5 · Canal EscolaEmeron</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="yr">2026</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openP('ZMYRyxeBJ9Q')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/ZMYRyxeBJ9Q/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/ZMYRyxeBJ9Q/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg r">EMERON</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 6 · Canal EscolaEmeron</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="yr">2026</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openP('r6l9RnNajms')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/r6l9RnNajms/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/r6l9RnNajms/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg p">EMERON</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Vídeo 7 · Canal EscolaEmeron</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="yr">2026</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Stream -->
+    <div class="card" onclick="openP('zD9ID5URot8')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/zD9ID5URot8/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/zD9ID5URot8/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg r" style="background:rgba(200,30,30,.9)">🔴 AO VIVO</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Live — Canal EscolaEmeron</div>
+          <div class="cpm"><span class="mp" style="color:#ff4444">● Ao Vivo</span><span class="yr">2026</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WIDE BANNER — Semana da Pauta Verde -->
+<div class="wb">
+  <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=80" alt="">
+  <div class="wbs">
+    <div class="wbc">
+      <div class="wbtg">🌿 Semana da Pauta Verde · Jun. 8–12, 2026</div>
+      <div class="wbtt">Direito Ambiental<br>Amazônico</div>
+      <div class="wbdesc">Série especial em parceria com MP e TCE-RO. Casos reais do TJRO, Design Thinking aplicado à gestão ambiental municipal.</div>
+      <div class="wbbtns">
+        <button class="wbtn w">▶ Assistir</button>
+        <button class="wbtn g">+ Minha Lista</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SÉRIE: DIÁLOGOS COM O FUTURO ══ -->
+<div class="sec">
+  <div class="rh">
+    <div class="rt"><span class="rtr">🎬</span>Série Diálogos com o Futuro</div>
+    <a href="https://emeron.edu.br/series-inicio/series-dialogos" target="_blank" class="rm">Ver na EMERON →</a>
+  </div>
+  <div class="track">
+    <div class="card" onclick="openP('ZdMTS3l0ZEc')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/ZdMTS3l0ZEc/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/ZdMTS3l0ZEc/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg p">Série</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Ep. 1 — Não é sobre o HAL. É sobre nós.</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" onclick="openP('Syd2SpLPnik')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/Syd2SpLPnik/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/Syd2SpLPnik/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg p">Série</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Ep. 2 — Quando o mundo acaba, o Direito recomeça</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" onclick="openP('uAwnIRwDXSo')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/uAwnIRwDXSo/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/uAwnIRwDXSo/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg p">Série</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Ep. 3 — 2001: Uma Odisseia no Espaço</div>
+          <div class="cpm"><span class="mp">Em breve</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BANZEIRO LERO ══ -->
+<div class="sec">
+  <div class="rh">
+    <div class="rt"><span class="rtr">🎤</span>Banzeiro Lero — Talks do Judiciário</div>
+    <a href="#" class="rm">Ver todos →</a>
+  </div>
+  <div class="track">
+    <div class="card" onclick="openP('2KmzzZLFg-M')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/2KmzzZLFg-M/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/2KmzzZLFg-M/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg n">Talk</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Banzeiro Lero — Talk 1</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" onclick="openP('WcoRbheNSs0')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/WcoRbheNSs0/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/WcoRbheNSs0/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg n">Talk</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Banzeiro Lero — Talk 2</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" onclick="openP('ZMYRyxeBJ9Q')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/ZMYRyxeBJ9Q/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/ZMYRyxeBJ9Q/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg n">Talk</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Banzeiro Lero — Talk 3</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="lv">Livre</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PEDIDO DE VISTA ══ -->
+<div class="sec">
+  <div class="rh">
+    <div class="rt"><span class="rtr">🎧</span>Pedido de Vista — Podcast Jurídico</div>
+    <a href="#" class="rm">Ver todos →</a>
+  </div>
+  <div class="track">
+    <div class="card" onclick="openP('r6l9RnNajms')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/r6l9RnNajms/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/r6l9RnNajms/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg r">Podcast</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Pedido de Vista — Episódio</div>
+          <div class="cpm"><span class="mp">Novo</span><span class="lv">Avançado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" onclick="openP('zD9ID5URot8')">
+      <div class="cf">
+        <div class="ci">
+          <img src="https://img.youtube.com/vi/zD9ID5URot8/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/zD9ID5URot8/hqdefault.jpg'" alt="">
+          <div class="cov"><div class="cpl">▶</div></div>
+          <span class="cbdg r" style="background:rgba(200,30,30,.9)">🔴 Live</span>
+        </div>
+        <div class="cp">
+          <div class="cpa"><button class="pa pp">▶</button><button class="pa oo">+</button></div>
+          <div class="cpt">Live EMERON — Transmissão Especial</div>
+          <div class="cpm"><span class="mp" style="color:#ff4444">● Ao Vivo</span><span class="yr">2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GENRE GRID -->
+<div class="gs">
+  <div class="gst">Explorar por Categoria</div>
+  <div class="gg">
+    <div class="gi" style="background:linear-gradient(135deg,#1a0505,#2d0808)"><span class="giic">⚖️</span><div><div class="gin">Direito Processual</div><div class="gic">24 títulos</div></div><span class="gibg">⚖️</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#051018,#081928)"><span class="giic">💻</span><div><div class="gin">Tecnologia & PJe</div><div class="gic">18 títulos</div></div><span class="gibg">💻</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#0e0818,#180e28)"><span class="giic">🎓</span><div><div class="gin">Formação Inicial</div><div class="gic">12 títulos</div></div><span class="gibg">🎓</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#180a05,#281008)"><span class="giic">🗣️</span><div><div class="gin">Linguagem Simples</div><div class="gic">9 títulos</div></div><span class="gibg">🗣️</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#051508,#081e0c)"><span class="giic">🌿</span><div><div class="gin">Meio Ambiente</div><div class="gic">11 títulos</div></div><span class="gibg">🌿</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#181005,#221808)"><span class="giic">🏛️</span><div><div class="gin">Ética e Deontologia</div><div class="gic">15 títulos</div></div><span class="gibg">🏛️</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#050d18,#081528)"><span class="giic">👩‍⚖️</span><div><div class="gin">Direitos Humanos</div><div class="gic">20 títulos</div></div><span class="gibg">👩‍⚖️</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#100818,#180e22)"><span class="giic">🤖</span><div><div class="gin">IA & Inovação</div><div class="gic">8 títulos</div></div><span class="gibg">🤖</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#101005,#181808)"><span class="giic">📊</span><div><div class="gin">Gestão Judicial</div><div class="gic">13 títulos</div></div><span class="gibg">📊</span></div>
+    <div class="gi" style="background:linear-gradient(135deg,#051018,#080f22)"><span class="giic">🌐</span><div><div class="gin">Internacionalização</div><div class="gic">6 títulos</div></div><span class="gibg">🌐</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftp">
+    <div class="flb">
+      <div class="flep">EMERONPLAY</div>
+      <div class="flem">
+        <svg width="20" height="17" viewBox="0 0 28 24" fill="none"><path d="M14 4C11 2 6 2 2 4v16c4-2 8-2 12 0V4z" fill="#fff" opacity=".4"/><path d="M14 4c3-2 8-2 12 0v16c-4-2-8-2-12 0V4z" fill="#fff" opacity=".6"/><path d="M14 4v16" stroke="#fff" stroke-width="1.2" opacity=".7"/></svg>
+        <span>EMERON</span>
+      </div>
+    </div>
+    <ul class="fll">
+      <li><a href="#">Política de Privacidade</a></li>
+      <li><a href="#">LGPD</a></li>
+      <li><a href="#">Acessibilidade</a></li>
+      <li><a href="#">Fale Conosco</a></li>
+      <li><a href="https://emeron.edu.br" target="_blank">EMERON</a></li>
+      <li><a href="https://tjro.jus.br" target="_blank">TJRO</a></li>
+    </ul>
+  </div>
+  <div class="fcp">
+    © 2026 Escola da Magistratura do Estado de Rondônia (EMERON) · Tribunal de Justiça do Estado de Rondônia<br>
+    Porto Velho – RO · <em>Transformando a Justiça pela Educação!</em>
+  </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="ov" id="lm" onclick="if(event.target===this)closeL()">
+  <div class="mo">
+    <button class="xb" onclick="closeL()">✕</button>
+    <div class="mol">EMERONPLAY</div>
+    <h2>Entrar</h2>
+    <p>Use Gov.br ou sua conta institucional do TJRO para certificados e histórico de aprendizagem.</p>
+    <button class="bgov">🏛️&nbsp; Entrar com Gov.br</button>
+    <div class="dvo">ou</div>
+    <div class="fi"><label>E-mail institucional</label><input type="email" placeholder="seu.nome@tjro.jus.br"></div>
+    <div class="fi"><label>Senha</label><input type="password" placeholder="••••••••"></div>
+    <button class="bmai">Entrar</button>
+    <div class="mn">Conteúdos <strong style="color:#46d369">LIVRE</strong> não exigem login.<br><a href="#">Acessar sem cadastro →</a></div>
+  </div>
+</div>
+
+<!-- VIDEO PLAYER MODAL -->
+<div class="pov" id="pm" onclick="if(event.target===this)closeP()">
+  <div class="pbox">
+    <button class="pclose" onclick="closeP()">✕</button>
+    <div class="piframe">
+      <iframe id="ytf" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('sol', scrollY > 60));
+
+function openL() { document.getElementById('lm').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeL() { document.getElementById('lm').classList.remove('open'); document.body.style.overflow=''; }
+
+function openP(id) {
+  const pm = document.getElementById('pm');
+  document.getElementById('ytf').src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+  pm.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeP() {
+  document.getElementById('ytf').src = '';
+  document.getElementById('pm').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.pill').forEach(p => p.addEventListener('click', function() {
+  document.querySelectorAll('.pill').forEach(x => x.classList.remove('on'));
+  this.classList.add('on');
+}));
+
+const v = document.getElementById('hv');
+if(v) v.onerror = () => v.style.display='none';
+document.addEventListener('keydown', e => { if(e.key==='Escape'){closeP();closeL();} });
+</script>
+</body>
+</html>
