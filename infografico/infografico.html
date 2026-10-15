@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reestruturação EMERON · Etapa 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<!--
+  Fonte única do conteúdo: "Proposta alternativa de reestruturação" — EMERON,
+  Projeto n. 11/2026, Processo SEI n. 0000838-39.2026.8.22.8700 (2 páginas).
+
+  ===================== CONFERÊNCIA DOS TOTAIS — ETAPA POSTERIOR =====================
+  (contagem apenas do que o PDF indica como "Criar"; transformações à parte)
+
+  Unidade            | DAS-1 | Técnico Jud. | Analista | FG-5 | FG-4 | Linha
+  -------------------+-------+--------------+----------+------+------+------
+  DIEAD              |   0   |      2       | 1 (TIC)  |  1   |  1   |   5
+  DIPED              |   2   |      0       |    0     |  0   |  0   |   2
+  COFAEC             |   1   |      4       |    0     |  2   |  0   |   7
+  Gabinete da Direção|   0   |      0       |    0     |  1   |  0   |   1
+  Centro de Memória  |   1   |      0       | 1 (Arq.) |  2   |  0   |   4
+  DEAD               |   0   |      3       |    0     |  1   |  1   |   5
+  ASCOM              |   2   |      0       |    0     |  0   |  0   |   2
+  -------------------+-------+--------------+----------+------+------+------
+  TOTAL              |   6   |      9       |    2     |  7   |  2   |  26
+
+  DAS-1 (Assistente Técnico II / DAS-1): 2 (DIPED) + 1 (COFAEC) + 1 (Centro de Memória) + 2 (ASCOM) = 6
+  Técnico Judiciário:                    2 (DIEAD) + 4 (COFAEC) + 3 (DEAD) = 9
+  Analista (de TIC / Jud. Arquivologia): 1 (DIEAD) + 1 (Centro de Memória) = 2
+  FG-5:                                  1 (DIEAD) + 2 (COFAEC) + 1 (Gabinete) + 2 (Centro de Memória) + 1 (DEAD) = 7
+  FG-4:                                  1 (DIEAD) + 1 (DEAD) = 2
+  Total de criações:                     6 + 9 + 2 + 7 + 2 = 26
+  Conferência por linha:                 5 + 2 + 7 + 1 + 4 + 5 + 2 = 26  ✓
+
+  Fora da soma (não são criações):
+  - COFAEC: transformação de 1 FG-5 (originária da Seção de Registro e Controle
+    Acadêmico) em DAS-1 → saldo: +1 DAS-1 / −1 FG-5, sem acréscimo de quantitativo.
+  - Centro de Memória: alocação posterior do DAS-2 transferido à Secretaria-Geral
+    "permanece a definir" (cargo já existente — medida 4 da Etapa 1).
+  - DIEAD: criação de unidade (Seção de Tecnologia, Design e Produção), não de cargo.
+  ===================================================================================
+-->
+<style>
+  :root{
+    --navy:#1E3A5F; --terra:#8B2335; --teal:#1B6B6B; --bronze:#C8843F;
+    --ink:#1b2430; --muted:#4f5b69; --line:#d5dbe2; --paper:#ffffff;
+    --navy-50:#eef2f7; --terra-50:#f8eef0; --teal-50:#e8f2f2; --bronze-50:#faf3ea;
+    --neutral:#f3f4f6;
+  }
+  @page{ size: A3 landscape; margin: 0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:var(--paper); color:var(--ink); }
+  body{
+    width:420mm; height:297mm; overflow:hidden;
+    font-family:"Source Sans 3", "Segoe UI", Arial, sans-serif;
+    font-size:11.5pt; line-height:1.3;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    display:flex; flex-direction:column;
+  }
+  svg.i{ width:1em; height:1em; flex:none; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+
+  /* ---------- Cabeçalho / tese ---------- */
+  header{
+    background:var(--navy); color:#fff;
+    padding:6mm 14mm 5mm; display:grid; grid-template-columns:1fr auto; gap:10mm; align-items:center;
+    border-bottom:2.2mm solid var(--bronze);
+  }
+  .kicker{ font-size:10.5pt; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:#cdd8e6; }
+  .kicker b{ color:var(--bronze); font-weight:700; }
+  h1{
+    font-family:"Source Serif 4", Georgia, serif; font-weight:700;
+    font-size:27pt; line-height:1.08; margin:1.6mm 0 1.4mm; letter-spacing:-.01em;
+  }
+  h1 em{ font-style:normal; color:#f0c48f; }
+  .sub{ font-size:12pt; color:#dfe7f1; max-width:280mm; }
+  .zeros{ display:flex; gap:5mm; }
+  .zero{
+    background:#fff; color:var(--navy); border-radius:3mm; padding:2.6mm 5mm; text-align:center; min-width:40mm;
+  }
+  .zero .n{ font-family:"Source Serif 4", Georgia, serif; font-size:32pt; font-weight:700; line-height:1; color:var(--terra); }
+  .zero .l{ font-size:11pt; font-weight:700; text-transform:uppercase; letter-spacing:.04em; margin-top:1mm; }
+  .zero .s{ font-size:9.5pt; color:var(--muted); }
+
+  main{ flex:1; padding:4.5mm 14mm 4mm; display:flex; flex-direction:column; gap:3.5mm; min-height:0; }
+
+  .sec-title{ display:flex; align-items:center; gap:3mm; font-size:12pt; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--navy); }
+  .sec-title .bar{ flex:1; height:.5mm; background:var(--line); }
+  .sec-title .pill{ background:var(--navy); color:#fff; border-radius:10mm; padding:.6mm 3.5mm; font-size:10pt; letter-spacing:.06em; }
+
+  /* ---------- Cartões das medidas ---------- */
+  .grid{ display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:auto auto; gap:3.5mm; }
+  .card.tall{ grid-row:span 2; }
+  .card{
+    border:.35mm solid var(--line); border-radius:2.5mm; background:#fff;
+    padding:2.8mm 3.6mm 3mm; display:flex; flex-direction:column; gap:1.5mm;
+    border-top:1.4mm solid var(--navy);
+  }
+  .card-h{ display:flex; align-items:center; gap:2.6mm; }
+  .num{
+    width:8.5mm; height:8.5mm; border-radius:50%; background:var(--bronze); color:#fff;
+    display:grid; place-items:center; font-weight:800; font-size:13pt; flex:none;
+  }
+  .card-h h3{ font-size:13pt; line-height:1.12; color:var(--navy); font-weight:800; flex:1; }
+  .card-h .ic{ font-size:17pt; color:var(--navy); opacity:.85; }
+  .tag{ display:inline-block; font-size:8.8pt; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .flow{ display:flex; flex-direction:column; gap:1.2mm; }
+  .box{ border-radius:1.6mm; padding:1.5mm 2.4mm; font-size:10.4pt; line-height:1.28; }
+  .box .lb{ display:block; font-size:8.6pt; font-weight:800; text-transform:uppercase; letter-spacing:.08em; margin-bottom:.4mm; }
+  .from{ background:var(--terra-50); border-left:1.1mm solid var(--terra); }
+  .from .lb{ color:var(--terra); }
+  .to{ background:var(--teal-50); border-left:1.1mm solid var(--teal); }
+  .to .lb{ color:var(--teal); }
+  .arrow{ display:flex; justify-content:center; color:var(--bronze); font-size:11pt; line-height:1; height:3mm; }
+  .sub11{ border:.3mm dashed var(--bronze); border-radius:1.6mm; padding:2mm 2.6mm; font-size:10.4pt; background:var(--bronze-50); line-height:1.26; }
+  .sub11 b{ color:#8a5520; }
+  .u{ font-weight:700; }
+  .c{ font-weight:700; color:var(--terra); white-space:nowrap; }
+
+  .summary{
+    background:var(--navy); color:#fff; border-radius:2.5mm; padding:4.5mm 5mm;
+    display:flex; flex-direction:column; justify-content:center; gap:2.6mm;
+  }
+  .summary h3{ font-family:"Source Serif 4", Georgia, serif; font-size:16pt; line-height:1.15; color:#f0c48f; }
+  .summary ul{ list-style:none; display:flex; flex-direction:column; gap:1.8mm; font-size:11pt; }
+  .summary li{ display:flex; gap:2.2mm; align-items:flex-start; }
+  .summary li svg{ color:#7fd0c6; margin-top:.6mm; font-size:12pt; }
+
+  /* ---------- Faixa: Na mesma oportunidade ---------- */
+  .band{
+    background:var(--teal); color:#fff; border-radius:2.5mm;
+    display:grid; grid-template-columns:52mm 1fr 1fr 82mm; align-items:stretch;
+  }
+  .band .lead{ padding:4mm 5mm; display:flex; flex-direction:column; justify-content:center; border-right:.4mm solid rgba(255,255,255,.3); }
+  .band .lead .t{ font-size:12pt; font-weight:800; text-transform:uppercase; letter-spacing:.07em; }
+  .band .lead .s{ font-size:10pt; color:#d2ecea; margin-top:1mm; }
+  .band .item{ padding:3.4mm 5mm; display:flex; gap:3.5mm; align-items:flex-start; border-right:.4mm solid rgba(255,255,255,.3); }
+  .band .big{ font-family:"Source Serif 4", Georgia, serif; font-size:30pt; font-weight:700; line-height:1; color:#fff; }
+  .band .big small{ display:block; white-space:nowrap; font-family:"Source Sans 3", sans-serif; font-size:11pt; font-weight:800; letter-spacing:.04em; color:#f0c48f; margin-top:.8mm; }
+  .band .item h4{ font-size:12.5pt; font-weight:800; margin-bottom:.8mm; }
+  .band .item p{ font-size:10.4pt; line-height:1.27; color:#eaf6f5; }
+  .band .note{ padding:3.4mm 5mm; display:flex; gap:3mm; align-items:center; background:rgba(0,0,0,.14); border-radius:0 2.5mm 2.5mm 0; }
+  .band .note .ic{ font-size:22pt; color:#f0c48f; }
+  .band .note p{ font-size:10.4pt; line-height:1.28; }
+  .band .note b{ color:#fff; }
+
+  /* ---------- Rodapé: Etapa posterior (tom neutro) ---------- */
+  footer{
+    margin-top:auto; background:var(--neutral); border-top:.4mm solid var(--line);
+    padding:3.2mm 14mm 3.4mm; display:grid; grid-template-columns:1fr 66mm; gap:7mm; color:#38424e;
+  }
+  .post-h{ display:flex; align-items:baseline; gap:3mm; margin-bottom:1.4mm; }
+  .post-h .t{ font-size:11.5pt; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:#38424e; }
+  .post-h .s{ font-size:10pt; color:var(--muted); }
+  table{ width:100%; border-collapse:collapse; font-size:10pt; }
+  th,td{ padding:.55mm 2mm; text-align:center; border-bottom:.25mm solid #dde1e6; }
+  th{ font-size:9pt; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:700; border-bottom:.4mm solid #b9c0c8; }
+  td:first-child, th:first-child{ text-align:left; }
+  td:first-child b{ color:#2b3440; }
+  td.obs, th.obs{ text-align:left; font-size:9.4pt; color:var(--muted); }
+  td .z{ color:#b4bbc3; }
+  tr.tot td{ font-weight:800; border-top:.45mm solid #8a94a0; border-bottom:none; color:#2b3440; background:#e7e9ec; }
+  .side{ display:flex; flex-direction:column; gap:3mm; }
+  .ph{
+    border:.4mm dashed #9aa3ad; border-radius:2mm; padding:2.4mm 3mm; font-size:10.4pt; background:#fff;
+  }
+  .ph b{ color:#2b3440; }
+  .ph .v{ color:var(--terra); font-weight:700; }
+  .qr{ display:flex; gap:3mm; align-items:center; }
+  .qr .sq{
+    width:24mm; height:24mm; flex:none; border:.4mm dashed #9aa3ad; border-radius:1.5mm; background:#fff;
+    display:grid; place-items:center; text-align:center; font-size:8.5pt; color:var(--muted); line-height:1.15;
+  }
+  .qr .sq svg{ font-size:18pt; color:#9aa3ad; display:block; margin:0 auto 1mm; }
+  .qr p{ font-size:9.6pt; line-height:1.3; }
+  .src{ font-size:8.8pt; color:var(--muted); line-height:1.3; }
+</style>
+</head>
+<body>
+
+<!-- Ícones SVG inline (traço, herdam a cor do contexto) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/><path d="M4 21h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+  <symbol id="i-move" viewBox="0 0 24 24"><path d="M4 7h13"/><path d="M14 4l3 3-3 3"/><path d="M20 17H7"/><path d="M10 14l-3 3 3 3"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9-9-9z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/><path d="M17 3l2 2-2 2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v16"/><path d="M6 14l6 6 6-6"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M7 21h10"/><path d="M4 7h16"/><path d="M4 7l-2.5 6a3 3 0 0 0 5 0z"/><path d="M20 7l-2.5 6a3 3 0 0 0 5 0z"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h2M20 14v2"/></symbol>
+</svg>
+
+<header>
+  <div>
+    <div class="kicker">Escola da Magistratura do Estado de Rondônia · <b>Projeto n. 11/2026</b> · Proposta alternativa de reestruturação</div>
+    <h1>A Etapa 1 reorganiza a EMERON <em>sem criar cargos ou funções.</em></h1>
+    <p class="sub">Etapa imediata: movimentações e transformações de unidades, cargos e funções existentes. Sete medidas, todas com origem em estrutura já existente.</p>
+  </div>
+  <div class="zeros" aria-label="Saldo da Etapa 1">
+    <div class="zero"><div class="n">0</div><div class="l">cargos criados</div><div class="s">na Etapa 1</div></div>
+    <div class="zero"><div class="n">0</div><div class="l">funções criadas</div><div class="s">na Etapa 1</div></div>
+  </div>
+</header>
+
+<main>
+  <div class="sec-title"><span class="pill">Etapa 1</span>Implementação imediata · origem → destino<span class="bar"></span></div>
+
+  <section class="grid">
+    <!-- 1 -->
+    <article class="card tall">
+      <div class="card-h"><span class="num">1</span><h3>Elevação da divisão de formação</h3><svg class="i ic"><use href="#i-up"/></svg></div>
+      <span class="tag">Elevação · transformação</span>
+      <div class="flow">
+        <div class="box from"><span class="lb">Origem</span><span class="u">Divisão de Coordenação de Formação</span>, vinculada ao Departamento Pedagógico, e cargo de Assessor Jurídico <span class="c">(DAS-4)</span> da Assessoria Jurídica.</div>
+        <div class="arrow"><svg class="i"><use href="#i-down"/></svg></div>
+        <div class="box to"><span class="lb">Destino</span><span class="u">Coordenadoria de Formação, Aperfeiçoamento, Eventos e Cursos</span>, vinculada à Secretaria-Geral; <span class="c">DAS-4</span> transformado em Coordenador II.</div>
+      </div>
+      <div class="sub11"><b>1.1</b> Seções e chefias <span class="c">FG-5</span> reunidas no Núcleo de Registros e Certificações Educacionais e no Núcleo de Operação e Cerimonial: duas <span class="c">FG-5</span> passam a Chefe de Equipe (uma por núcleo); as demais, a Serviço Especial I <span class="c">(FG-5)</span>.</div>
+    </article>
+    <!-- 2 -->
+    <article class="card">
+      <div class="card-h"><span class="num">2</span><h3>Extinção da Assessoria Jurídica</h3><svg class="i ic"><use href="#i-x"/></svg></div>
+      <span class="tag">Extinção de unidade · cargo mantido</span>
+      <div class="flow">
+        <div class="box from"><span class="lb">Origem</span><span class="u">Assessoria Jurídica da Secretaria-Geral</span>, extinta como unidade autônoma; cargo <span class="c">DAS-3</span> de Diretor de Divisão da estrutura anterior.</div>
+        <div class="arrow"><svg class="i"><use href="#i-down"/></svg></div>
+        <div class="box to"><span class="lb">Destino</span>Assistente Jurídico <span class="c">(DAS-3)</span>, vinculado ao <span class="u">Departamento Administrativo</span> da Secretaria-Geral.</div>
+      </div>
+    </article>
+    <!-- 3 -->
+    <article class="card">
+      <div class="card-h"><span class="num">3</span><h3>Extinção da divisão de registros</h3><svg class="i ic"><use href="#i-x"/></svg></div>
+      <span class="tag">Extinção de unidade · cargo transferido</span>
+      <div class="flow">
+        <div class="box from"><span class="lb">Origem</span><span class="u">Divisão de Registro e Controle Acadêmico</span> do Departamento Pedagógico.</div>
+        <div class="arrow"><svg class="i"><use href="#i-down"/></svg></div>
+        <div class="box to"><span class="lb">Destino</span>Atribuições redistribuídas à coordenadoria de formação (item 1); cargo de Diretor de Divisão <span class="c">(DAS-3)</span> transferido ao <span class="u">Gabinete da Direção</span>.</div>
+      </div>
+    </article>
+    <!-- 4 -->
+    <article class="card">
+      <div class="card-h"><span class="num">4</span><h3>Cargo DAS-2 do DEPED</h3><svg class="i ic"><use href="#i-move"/></svg></div>
+      <span class="tag">Transferência de cargo</span>
+      <div class="flow">
+        <div class="box from"><span class="lb">Origem</span>Cargo <span class="c">DAS-2</span> vinculado ao <span class="u">Departamento Pedagógico</span>.</div>
+        <div class="arrow"><svg class="i"><use href="#i-down"/></svg></div>
+        <div class="box to"><span class="lb">Destino</span><span class="u">Secretaria-Geral da EMERON</span>, para alocação conforme a necessidade administrativa e posterior adequação na reestruturação.</div>
+      </div>
+    </article>
+    <!-- 5 -->
+    <article class="card">
+      <div class="card-h"><span class="num">5</span><h3>Seção de apoio administrativo</h3><svg class="i ic"><use href="#i-tag"/></svg></div>
+      <span class="tag">Redenominação de unidade</span>
+      <div class="flow">
+        <div class="box from"><span class="lb">Origem</span><span class="u">Seção de Manutenção Patrimonial</span> do Departamento Administrativo.</div>
+        <div class="arrow"><svg class="i"><use href="#i-down"/></svg></div>
+        <div class="box to"><span class="lb">Destino</span><span class="u">Seção de Apoio Administrativo e Logístico (SEAL)</span>, mediante redenominação da unidade.</div>
+      </div>
+    </article>
+    <!-- 6 -->
+    <article class="card">
+      <div class="card-h"><span class="num">6</span><h3>Especialidade de Analista</h3><svg class="i ic"><use href="#i-badge"/></svg></div>
+      <span class="tag">Alteração de especialidade</span>
+      <div class="flow">
+        <div class="box from"><span class="lb">Origem</span>Vaga de <span class="c">Analista Judiciário</span>, especialidade Revisão Redacional, da <span class="u">Secretaria-Geral</span>.</div>
+        <div class="arrow"><svg class="i"><use href="#i-down"/></svg></div>
+        <div class="box to"><span class="lb">Destino</span>Cargo de <span class="c">Analista Judiciário</span>, especialidade Administração, no <span class="u">Departamento Administrativo</span>.</div>
+      </div>
+    </article>
+    <!-- 7 -->
+    <article class="card">
+      <div class="card-h"><span class="num">7</span><h3>Regularização da dotação</h3><svg class="i ic"><use href="#i-doc"/></svg></div>
+      <span class="tag">Regularização formal</span>
+      <div class="flow">
+        <div class="box from"><span class="lb">Origem</span>Cargos formalmente vinculados a outras unidades da Escola e já utilizados na formação.</div>
+        <div class="arrow"><svg class="i"><use href="#i-down"/></svg></div>
+        <div class="box to"><span class="lb">Destino</span>Regularização da dotação de dois cargos de <span class="c">Técnico Judiciário</span> na <span class="u">coordenadoria de formação</span>.</div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Faixa: Na mesma oportunidade -->
+  <section class="band">
+    <div class="lead">
+      <div class="t">Na mesma oportunidade</div>
+      <div class="s">Remanejamento de cargos da Presidência — sem criação.</div>
+    </div>
+    <div class="item">
+      <div class="big">2<small>DAS-5</small></div>
+      <div>
+        <h4>Gabinete da Direção da EMERON</h4>
+        <p>Coordenador(a) I (DAS-5) da Presidência, já cedido e em exercício na EMERON, e Diretor(a) de Departamento (DAS-5) da Presidência, mediante vinculação definitiva.</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="big">1<small>DAS-3</small></div>
+      <div>
+        <h4>Divisão de Educação a Distância (DIEAD)</h4>
+        <p>Cargo DAS-3 de Gestor de Equipe da Presidência, criado e não provido, para a direção da nova divisão, que reúne as seções de planejamento e execução de EaD.</p>
+      </div>
+    </div>
+    <div class="note">
+      <svg class="i ic"><use href="#i-scale"/></svg>
+      <p>A <b>Resolução CNJ n. 219/2016</b> exclui os servidores das escolas judiciais e da magistratura da base de cálculo do limite de lotação das áreas de apoio indireto <b>(art. 11, § 1º)</b>.</p>
+    </div>
+  </section>
+</main>
+
+<!-- Rodapé neutro: Etapa Posterior (totais conferidos no comentário do <head>) -->
+<footer>
+  <div>
+    <div class="post-h"><span class="t">Etapa posterior · próximo exercício</span><span class="s">Medidas pendentes, fora da Etapa 1. Quantitativos a criar, por unidade.</span></div>
+    <table>
+      <thead>
+        <tr><th>Unidade</th><th>DAS-1</th><th>Técnico Judiciário</th><th>Analista</th><th>FG-5</th><th>FG-4</th><th>Total</th><th class="obs">Observação</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>DIEAD</b></td><td><span class="z">–</span></td><td>2</td><td>1</td><td>1</td><td>1</td><td>5</td><td class="obs">Nova Seção de Tecnologia, Design e Produção (Analista de TIC)</td></tr>
+        <tr><td><b>DIPED</b></td><td>2</td><td><span class="z">–</span></td><td><span class="z">–</span></td><td><span class="z">–</span></td><td><span class="z">–</span></td><td>2</td><td class="obs">Assistente Técnico II, planejamento pedagógico</td></tr>
+        <tr><td><b>COFAEC</b></td><td>1</td><td>4</td><td><span class="z">–</span></td><td>2</td><td><span class="z">–</span></td><td>7</td><td class="obs">+ transformação de 1 FG-5 em DAS-1 (não somada)</td></tr>
+        <tr><td><b>Gabinete da Direção</b></td><td><span class="z">–</span></td><td><span class="z">–</span></td><td><span class="z">–</span></td><td>1</td><td><span class="z">–</span></td><td>1</td><td class="obs">Serviço Especial I, secretariado</td></tr>
+        <tr><td><b>Centro de Memória</b></td><td>1</td><td><span class="z">–</span></td><td>1</td><td>2</td><td><span class="z">–</span></td><td>4</td><td class="obs">Analista Judiciário em Arquivologia; alocação do DAS-2 a definir</td></tr>
+        <tr><td><b>DEAD</b></td><td><span class="z">–</span></td><td>3</td><td><span class="z">–</span></td><td>1</td><td>1</td><td>5</td><td class="obs">FG-5 de Assistente Predial; FG-4 para gestão patrimonial</td></tr>
+        <tr><td><b>ASCOM</b></td><td>2</td><td><span class="z">–</span></td><td><span class="z">–</span></td><td><span class="z">–</span></td><td><span class="z">–</span></td><td>2</td><td class="obs">Assistente Técnico II, design gráfico e publicidade</td></tr>
+        <tr class="tot"><td>Total</td><td>6</td><td>9</td><td>2</td><td>7</td><td>2</td><td>26</td><td class="obs"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="side">
+    <div class="ph"><b>Impacto orçamentário:</b> <span class="v">[verificar]</span></div>
+    <div class="qr">
+      <div class="sq"><div><svg class="i"><use href="#i-qr"/></svg>QR code<br>SEI<br>[inserir]</div></div>
+      <p><b>Processo SEI</b><br>n. 0000838-39.2026.8.22.8700</p>
+    </div>
+    <p class="src">Fonte: Proposta alternativa ao Projeto n. 11/2026 (EMERON), p. 1–2.</p>
+  </div>
+</footer>
+
+</body>
+</html>
