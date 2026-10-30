@@ -1,0 +1,74 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Head,Inter Display ExtraBold,52,&H0048BEF0,&H000000FF,&H00000000,&H80000000,0,0,0,0,100,100,3,0,1,0,2,8,40,40,0,1
+Style: Body,Inter Medium,46,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,0,2,8,40,40,0,1
+Style: Title,Inter Display Black,92,&H00FFFFFF,&H000000FF,&H00000000,&H90000000,0,0,0,0,100,100,2,0,1,0,4,5,40,40,0,1
+Style: Sub,Inter Medium,44,&H0048BEF0,&H000000FF,&H00000000,&H90000000,0,0,0,0,100,100,1,0,1,0,3,5,40,40,0,1
+Style: Line,Inter,10,&H0048BEF0,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:00.00,0:00:03.20,Title,,0,0,0,,{\fad(0,400)\pos(540,860)}ARROZ DE OSSOBUCO
+Dialogue: 1,0:00:00.00,0:00:03.20,Line,,0,0,0,,{\fad(0,400)\pos(480,925)\p1}m 0 0 l 120 0 120 5 0 5{\p0}
+Dialogue: 1,0:00:00.00,0:00:03.20,Sub,,0,0,0,,{\fad(0,400)\pos(540,985)}Do mercado à mesa, passo a passo
+Dialogue: 2,0:00:00.90,0:00:04.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}OS INGREDIENTES
+Dialogue: 2,0:00:00.90,0:00:04.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:00:00.90,0:00:04.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Ossobuco, arroz, cenoura, salsão,\Nabobrinha, cebola, tomate e pimentões
+Dialogue: 2,0:00:04.60,0:00:08.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}OS AROMÁTICOS
+Dialogue: 2,0:00:04.60,0:00:08.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:00:04.60,0:00:08.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Louro em folhas e\Npimenta-do-reino em grãos
+Dialogue: 2,0:00:08.60,0:00:12.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}ERVAS E TEMPEROS
+Dialogue: 2,0:00:08.60,0:00:12.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:00:08.60,0:00:12.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Alecrim e tomilho frescos,\Nmais extrato de tomate
+Dialogue: 2,0:00:12.60,0:00:36.60,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 1
+Dialogue: 2,0:00:12.60,0:00:36.60,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:00:12.60,0:00:36.60,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Temperar o ossobuco com sal\Ne pimenta moída na hora
+Dialogue: 2,0:00:36.90,0:00:38.90,Head,,0,0,0,,{\fad(250,250)\pos(540,1580)}BANCADA PRONTA
+Dialogue: 2,0:00:36.90,0:00:38.90,Line,,0,0,0,,{\fad(250,250)\pos(510,1646)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:00:36.90,0:00:38.90,Body,,0,0,0,,{\fad(250,250)\pos(540,1664)}Tudo limpo e organizado
+Dialogue: 2,0:00:39.10,0:00:41.90,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 2
+Dialogue: 2,0:00:39.10,0:00:41.90,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:00:39.10,0:00:41.90,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Caldo de legumes: cebola, cenoura,\Nsalsão, pimentões e tomate
+Dialogue: 2,0:00:42.20,0:00:54.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 3
+Dialogue: 2,0:00:42.20,0:00:54.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:00:42.20,0:00:54.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Mise en place: cebola picada,\Ncenoura e salsão em cubos
+Dialogue: 2,0:00:54.70,0:01:07.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 4
+Dialogue: 2,0:00:54.70,0:01:07.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:00:54.70,0:01:07.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Cebola, alho e raspas de limão;\No ossobuco é selado na panela de pressão
+Dialogue: 2,0:01:07.70,0:01:14.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}CARNE SELADA
+Dialogue: 2,0:01:07.70,0:01:14.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:01:07.70,0:01:14.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Dourada de todos os lados\Ne, em seguida, reservada
+Dialogue: 2,0:01:14.70,0:01:26.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 5
+Dialogue: 2,0:01:14.70,0:01:26.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:01:14.70,0:01:26.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}O ossobuco cozinha no caldo,\Nna pressão, até ficar macio
+Dialogue: 2,0:01:26.70,0:01:41.10,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 6
+Dialogue: 2,0:01:26.70,0:01:41.10,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:01:26.70,0:01:41.10,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Refogar alho e cebola\Ncom pimenta moída na hora
+Dialogue: 2,0:01:41.40,0:01:44.20,Head,,0,0,0,,{\fad(250,250)\pos(540,1580)}ENQUANTO A PANELA TRABALHA…
+Dialogue: 2,0:01:41.40,0:01:44.20,Line,,0,0,0,,{\fad(250,250)\pos(510,1646)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:01:41.40,0:01:44.20,Body,,0,0,0,,{\fad(250,250)\pos(540,1664)}chegam os amigos
+Dialogue: 2,0:01:50.50,0:01:57.90,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 7
+Dialogue: 2,0:01:50.50,0:01:57.90,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:01:50.50,0:01:57.90,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}O arroz refogado,\Npronto para a panela
+Dialogue: 2,0:01:58.20,0:02:17.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 8
+Dialogue: 2,0:01:58.20,0:02:17.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:01:58.20,0:02:17.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Abrir a panela após sair a pressão:\Ncarne macia, soltando do osso
+Dialogue: 2,0:02:17.70,0:02:57.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 9
+Dialogue: 2,0:02:17.70,0:02:57.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:02:17.70,0:02:57.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Separar a carne do osso\Ne devolvê-la ao caldo
+Dialogue: 2,0:02:57.70,0:04:17.40,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 10
+Dialogue: 2,0:02:57.70,0:04:17.40,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:02:57.70,0:04:17.40,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Juntar cenoura, salsão\Ne demais legumes ao caldo
+Dialogue: 2,0:04:17.70,0:05:41.60,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}PASSO 11
+Dialogue: 2,0:04:17.70,0:05:41.60,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:04:17.70,0:05:41.60,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Incorporar o arroz e mexer\Naté ficar úmido e cremoso
+Dialogue: 2,0:05:41.90,0:05:44.38,Head,,0,0,0,,{\fad(250,250)\pos(540,1548)}SERVIDO!
+Dialogue: 2,0:05:41.90,0:05:44.38,Line,,0,0,0,,{\fad(250,250)\pos(510,1614)\p1}m 0 0 l 60 0 60 4 0 4{\p0}
+Dialogue: 2,0:05:41.90,0:05:44.38,Body,,0,0,0,,{\fad(250,250)\pos(540,1632)}Arroz de ossobuco.\NBom apetite!
