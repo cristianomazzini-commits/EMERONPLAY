@@ -13,14 +13,17 @@ python3 .claude/skills/perplexity/scripts/perplexity_search.py "PERGUNTA" [opç�
 
 Opções:
 
-| Opção | Valores | Uso |
-|---|---|---|
-| `--model` | `sonar`, `sonar-pro` (padrão), `sonar-reasoning-pro`, `sonar-deep-research` | `sonar` para consultas rápidas; `sonar-pro` para o uso geral; `sonar-reasoning-pro` para análise comparativa; `sonar-deep-research` para levantamentos extensos (lento e mais caro) |
-| `--recency` | `hour`, `day`, `week`, `month`, `year` | Restringe as fontes ao período |
-| `--domains` | `stf.jus.br,cnj.jus.br` ou `-wikipedia.org` | Inclui (ou exclui, com `-`) domínios; até 20 |
-| `--context` | `low`, `medium` (padrão), `high` | Volume de contexto de busca |
-| `--system` | texto | Substitui a instrução padrão (português formal, com citações) |
-| `--json` | — | Resposta bruta, inclusive `search_results` |
+| Opção | Uso |
+|---|---|
+| `--model` | ID do modelo; padrão `perplexity/sonar` (busca na web com fontes). `--list-models` lista os demais disponíveis na conta (inclusive modelos de terceiros) e seus preços |
+| `--domains` | Domínios a priorizar (ex.: `stf.jus.br,cnj.jus.br,tjro.jus.br`); enviado como instrução, não como filtro rígido |
+| `--recency` | Período a priorizar, em texto livre (ex.: `desde 2024`) |
+| `--instructions` | Substitui a instrução padrão (português formal, com citações e sem invenções) |
+| `--no-search` | Desativa a busca na web |
+| `--max-tokens` | Limite de saída (obrigatório para modelos `anthropic/*`) |
+| `--json` | Resposta bruta, com `search_results` completos |
+
+Observação técnica: a Perplexity substituiu a antiga rota `/chat/completions` (modelos `sonar-pro` etc.) pela Agent API (`POST /v1/responses`). O script já usa a rota nova; a busca é ativada pela ferramenta `web_search` e as fontes vêm no item `search_results` da saída.
 
 ## Credencial
 
